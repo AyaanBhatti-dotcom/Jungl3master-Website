@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home // Y2K Remix</title>
+  <meta name="description" content="A 90s-coded, Y2K-aesthetic homepage in green, pink, and black."/>
+  <style>
+    :root{
+      --green:#39ff14; /* neon green */
+      --pink:#ff2bd6;  /* hot pink */
+      --black:#0a0a0a; /* deep black */
+      --grid: rgba(255,255,255,0.05);
+    }
+
+    /* Background: subtle CRT + grid vibe */
+    html,body{height:100%;}
+    body{
+      margin:0;
+      color:var(--green);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 60%) no-repeat,
+        repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 24px),
+        linear-gradient(180deg, #000, var(--black));
+      font-family: "Courier New", Monaco, Consolas, monospace;
+      image-rendering: pixelated;
+      cursor: crosshair;
+      letter-spacing: 0.2px;
+    }
+
+    /* Page frame like an old-school window */
+    .frame{
+      --b: 3px;
+      max-width: 980px;
+      margin: 24px auto 48px;
+      border: var(--b) solid var(--green);
+      box-shadow:
+        0 0 0 3px var(--black) inset,
+        0 0 18px 2px rgba(57,255,20,0.25),
+        0 0 48px 8px rgba(255,43,214,0.12);
+      background: linear-gradient(180deg, rgba(255,43,214,0.07), rgba(57,255,20,0.05));
+    }
+
+    .titlebar{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      background: linear-gradient(90deg, var(--pink), var(--green));
+      color:#000;
+      text-transform: uppercase;
+      font-weight: 800;
+      border-bottom: 2px dashed #000;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    .titlebar .lamp{width:10px; height:10px; border-radius:50%; background:#000; box-shadow:0 0 8px #000 inset}
+    .titlebar .seg{margin-left:auto; font-weight:900; background:#000; color:var(--green); padding:3px 6px; border:2px solid var(--green)}
+
+    /* Navigation */
+    nav{
+      display:flex; flex-wrap:wrap; gap:8px; padding:10px 14px; border-bottom:2px solid var(--green);
+      background: repeating-linear-gradient(45deg, rgba(0,0,0,0.75) 0 10px, rgba(255,43,214,0.08) 10px 20px);
+    }
+    nav a{
+      text-decoration:none; color:var(--pink); background:#000; border:2px solid var(--pink); padding:6px 10px; font-weight:700;
+      box-shadow: 0 0 0 2px #000, 0 0 6px rgba(255,43,214,0.35);
+    }
+    nav a:hover{ color:#000; background:var(--pink); text-decoration:underline wavy var(--green); }
+
+    /* Marquee (embrace the 90s!) */
+    .ticker{
+      border-top:2px dashed var(--green);
+      border-bottom:2px dashed var(--green);
+      background: #000;
+      color: var(--green);
+      text-shadow: 0 0 6px rgba(57,255,20,0.9);
+    }
+
+    /* Content */
+    .inner{ padding: 16px 16px 28px; }
+
+    .columns{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:18px; }
+    @media (max-width: 860px){ .columns{ grid-template-columns: 1fr; } }
+
+    .card{
+      border:3px double var(--pink);
+      background: rgba(0,0,0,0.75);
+      box-shadow: 0 0 10px rgba(255,43,214,0.25), inset 0 0 20px rgba(57,255,20,0.08);
+      padding:14px;
+    }
+
+    .card h2{
+      margin:0 0 10px 0;
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 20px;
+      text-shadow: 0 0 10px rgba(255,43,214,0.75), 0 0 4px rgba(57,255,20,0.6);
+    }
+
+    /* Retro separators */
+    .divider{ display:block; height:8px; margin:14px 0; background:
+      linear-gradient(90deg, var(--green), var(--pink)); box-shadow:0 0 12px rgba(255,43,214,0.5); }
+
+    /* Under construction badge */
+    .under-construction{
+      display:inline-block; padding:6px 10px; border:2px dotted var(--green); color:#000; background: linear-gradient(90deg, var(--green), #c2ffea);
+      font-weight:900; text-transform:uppercase; transform:skewX(-8deg);
+    }
+
+    /* Link list */
+    ul.grid{
+      list-style: none; padding:0; display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px;
+    }
+    ul.grid li a{
+      display:block; border:2px solid var(--green); padding:10px; background:#000; color:var(--green); text-decoration:none;
+      box-shadow: 0 0 0 2px #000, 0 0 14px rgba(57,255,20,0.25);
+    }
+    ul.grid li a:hover{ background: linear-gradient(180deg, rgba(57,255,20,0.18), rgba(255,43,214,0.18)); color:#fff; border-color:var(--pink); }
+
+    /* Fake web counter */
+    .counter{
+      display:inline-block; padding:6px 8px; background:#000; border:2px solid var(--pink); color:var(--pink); font-weight:800;
+    }
+
+    /* Blinking caret */
+    .caret{ display:inline-block; width:10px; height:1em; background:var(--green); vertical-align:baseline; animation: blink 1s steps(1,end) infinite; }
+    @keyframes blink{ 50% { opacity: 0; } }
+
+    /* Footer */
+    footer{ padding: 16px; text-align:center; color:#bbb; font-size: 12px; }
+    footer a{ color: var(--pink); text-decoration: none; }
+    footer a:hover{ text-decoration: underline; }
+
+    /* Small utility */
+    .row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .tag{ font-size:12px; padding:4px 6px; border:1px solid var(--pink); color:var(--pink); background:#000; }
+
+    /* Cursor trail (subtle) */
+    .spark{ position: fixed; width:6px; height:6px; pointer-events:none; border-radius:50%; background: radial-gradient(var(--pink), transparent); opacity:0.9; filter: blur(0.5px); }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="titlebar">
+      <span class="lamp"></span>
+      <span>Welcome to My Webzone</span>
+      <span class="seg">v2k.01</span>
+    </div>
+
+    <nav>
+      <a href="#">HOME</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#ctf">CTF</a>
+      <a href="#music">BEATS</a>
+      <a href="#blog">BLOG</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+
+    <div class="ticker">
+      <marquee behavior="scroll" scrollamount="7">✨ Under the neon glow — site rebooted from scratch. New layout, new vibes. Pink + Green forever ✨ — Visitor #<span id="visits">00000</span> — Stay awhile &amp; listen… ✨</marquee>
+    </div>
+
+    <div class="inner">
+      <div class="row" style="justify-content:space-between; gap:12px;">
+        <div class="under-construction">Under Construction</div>
+        <div class="counter" title="Totally real 90s hit counter">Hits: <span id="counter">000001</span></div>
+      </div>
+
+      <span class="divider"></span>
+
+      <section class="columns">
+        <article class="card" id="intro">
+          <h2>&lt;Hello, World /&gt;</h2>
+          <p>
+            You found the portal. This is a fresh, 90s-coded homepage with a Y2K twist — optimized for
+            CRTs, dial-up nostalgia, and neon dreams. Main palette: <strong style="color:var(--green)">green</strong>,
+            <strong style="color:var(--pink)">pink</strong>, and midnight <strong>black</strong>.
+          </p>
+          <p>
+            Type <code>help</code> in your mind console and press Enter<span class="caret"></span>
+          </p>
+
+          <ul class="grid" style="margin-top:12px">
+            <li><a href="#projects">Latest Projects →</a></li>
+            <li><a href="#ctf">CTF Notes &amp; Writeups →</a></li>
+            <li><a href="#music">Beats &amp; Gear →</a></li>
+            <li><a href="#blog">Blog / Changelog →</a></li>
+          </ul>
+        </article>
+
+        <aside class="card" id="now">
+          <h2>Now Playing</h2>
+          <p>Currently vibing to: <em>pink static over green grids</em>. Tracklist rotates whenever you reload.</p>
+          <div class="row" id="now-playing-tags"></div>
+
+          <h2 style="margin-top:16px">Status</h2>
+          <ul style="margin:0 0 0 18px">
+            <li>Design: neon cyber arcade</li>
+            <li>Stack: <abbr title="HyperText Markup Language">HTML</abbr> + CSS + a sprinkle of JS</li>
+            <li>Mood: shipping pixels</li>
+          </ul>
+        </aside>
+      </section>
+
+      <span class="divider"></span>
+
+      <section class="card" id="projects">
+        <h2>Projects</h2>
+        <ul class="grid">
+          <li><a href="#">Website Reboot (this!)</a></li>
+          <li><a href="#">Cyber Lab Notes</a></li>
+          <li><a href="#">Pixel Art Pack</a></li>
+          <li><a href="#">Mini Zine #01</a></li>
+        </ul>
+      </section>
+
+      <span class="divider"></span>
+
+      <section class="card" id="ctf">
+        <h2>CTF</h2>
+        <p>Writeups + cheatsheets are docking soon. Expect puzzles, payloads, and playful source code art.</p>
+      </section>
+
+      <span class="divider"></span>
+
+      <section class="card" id="music">
+        <h2>Beats</h2>
+        <p>Synth haze and tape saturation. Gear notes, patches, and demos incoming.</p>
+      </section>
+
+      <span class="divider"></span>
+
+      <section class="card" id="blog">
+        <h2>Blog / Changelog</h2>
+        <ul>
+          <li><strong>[New]</strong> Rewrote the site from zero. Built a neon frame, retro ticker, and fake hit counter.</li>
+          <li><strong>[WIP]</strong> Porting old posts. Drafting a guestbook like it’s 1998.</li>
+        </ul>
+      </section>
+
+      <span class="divider"></span>
+
+      <section class="card" id="contact">
+        <h2>Contact</h2>
+        <p>Carrier pigeon preferred. Otherwise, shout into the neon fog &mdash; it’ll find me.</p>
+      </section>
+    </div>
+
+    <footer>
+      <div class="row" style="justify-content:center">
+        <span class="tag">&copy; <span id="year"></span> Y2K Webzone</span>
+        <span class="tag">Best viewed on a CRT</span>
+        <span class="tag">Made with &lt;marquee&gt;</span>
+      </div>
+      <p style="margin-top:10px">If something looks broken, that’s the aesthetic.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Fake hit counter using localStorage (period-correct vibes, modern trick)
+    (function(){
+      const key = 'y2k_hits';
+      let n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+      localStorage.setItem(key, String(n));
+      const padded = String(n).padStart(5, '0');
+      document.getElementById('counter').textContent = padded;
+      document.getElementById('visits').textContent = padded;
+    })();
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tiny cursor sparkles
+    const sparks = [];
+    window.addEventListener('mousemove', e => {
+      const s = document.createElement('div');
+      s.className = 'spark';
+      s.style.left = (e.clientX + (Math.random()*6-3)) + 'px';
+      s.style.top  = (e.clientY + (Math.random()*6-3)) + 'px';
+      document.body.appendChild(s);
+      sparks.push(s);
+      setTimeout(()=>{ s.style.transition = 'all .6s ease-out'; s.style.transform='translateY(10px) scale(0)'; s.style.opacity='0'; }, 0);
+      setTimeout(()=>{ s.remove(); }, 650);
+    });
+
+    // Now Playing tags
+    const tags = ['#jungle','#shoegaze','#y2k','#bitcrush','#pink-noise','#green-grid','#dialup'];
+    const bucket = document.getElementById('now-playing-tags');
+    tags.sort(()=>Math.random()-0.5).slice(0,5).forEach(t=>{
+      const el = document.createElement('span');
+      el.className = 'tag';
+      el.textContent = t;
+      bucket.appendChild(el);
+    });
+  </script>
+</body>
+</html>
