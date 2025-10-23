@@ -4,87 +4,89 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog - Jungl3master</title>
+<meta name="description" content="Jungl3master's blog posts">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
-body {
-  background-color: #000;
-  color: #39ff14;
-  font-family: 'Courier New', monospace;
-  margin: 0;
-  padding: 20px;
+:root {
+    --neon-green:#39ff14;
+    --hot-pink:#ff2bd6;
+    --deep-black:#050505;
 }
-a { color: #ff2bd6; text-decoration: none; }
-h1 { text-align: center; color: #ff2bd6; }
-.post { border: 1px solid #ff2bd6; padding: 10px; margin: 10px 0; }
-.post-title { font-weight: bold; color: #ff2bd6; }
-.post-content { margin-top: 5px; }
-.add-post-btn { display: inline-block; padding: 5px 10px; background-color: #ff2bd6; color: #050505; margin-bottom: 10px; cursor: pointer; border-radius: 3px; }
-.hidden { display: none; }
-input, textarea { width: 100%; margin-bottom: 10px; }
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle at center, #050505 0%, #0a0a0a 100%);
+    color: var(--neon-green);
+}
+.frame {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid var(--hot-pink);
+    background: linear-gradient(45deg, rgba(57,255,20,0.1) 0%, rgba(255,43,214,0.1) 100%);
+    box-shadow: 0 0 15px var(--hot-pink);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+header h1 {
+    font-size: 2rem;
+    color: var(--neon-green);
+    margin: 0;
+}
+.back-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--hot-pink);
+    color: var(--deep-black);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+.back-link:hover {
+    opacity: 0.8;
+}
+article {
+    border: 1px solid var(--hot-pink);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+article h2 {
+    color: var(--hot-pink);
+    margin-top: 0;
+}
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--hot-pink);
+}
 </style>
 </head>
 <body>
-<a href="index.html">&larr; Back to Home</a>
-<h1>Blog</h1>
-<div id="posts"></div>
-<button id="addPostBtn" class="add-post-btn">Add Post</button>
-<div id="postForm" class="hidden">
-  <input type="text" id="postTitle" placeholder="Title" />
-  <textarea id="postContent" placeholder="Your post here..." rows="5"></textarea>
-  <button id="submitPost">Submit</button>
+<div class="frame">
+<header>
+    <h1>Blog</h1>
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
+</header>
+<section id="posts">
+    <!-- Example Blog Post -->
+    <article>
+        <h2>Welcome to my Blog</h2>
+        <p>Coming soon... stay tuned for updates.</p>
+    </article>
+</section>
+<footer>
+    <p>&copy; <span id="year"></span> Jungl3master</p>
+</footer>
 </div>
 <script>
-// Load posts from localStorage
-function loadPosts() {
-  const postsContainer = document.getElementById('posts');
-  const posts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-  postsContainer.innerHTML = '';
-  posts.forEach(post => {
-    const div = document.createElement('div');
-    div.className = 'post';
-    const title = document.createElement('div');
-    title.className = 'post-title';
-    title.textContent = post.title;
-    const content = document.createElement('div');
-    content.className = 'post-content';
-    content.textContent = post.content;
-    div.appendChild(title);
-    div.appendChild(content);
-    postsContainer.appendChild(div);
-  });
-}
-function savePosts(posts) {
-  localStorage.setItem('blogPosts', JSON.stringify(posts));
-}
-document.getElementById('addPostBtn').addEventListener('click', () => {
-  let storedPassword = localStorage.getItem('blogPassword');
-  const inputPassword = prompt(storedPassword ? 'Enter blog password:' : 'Set blog password:');
-  if (storedPassword) {
-    if (inputPassword !== storedPassword) {
-      alert('Incorrect password.');
-      return;
-    }
-  } else {
-    localStorage.setItem('blogPassword', inputPassword);
-  }
-  document.getElementById('postForm').classList.remove('hidden');
-});
-document.getElementById('submitPost').addEventListener('click', () => {
-  const title = document.getElementById('postTitle').value.trim();
-  const content = document.getElementById('postContent').value.trim();
-  if (!title || !content) {
-    alert('Please fill out both fields.');
-    return;
-  }
-  const posts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-  posts.unshift({ title, content });
-  savePosts(posts);
-  loadPosts();
-  document.getElementById('postForm').classList.add('hidden');
-  document.getElementById('postTitle').value = '';
-  document.getElementById('postContent').value = '';
-});
-// Initially load posts
-loadPosts();
+// Set current year
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
