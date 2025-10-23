@@ -39,10 +39,6 @@ header h1 {
   color: var(--neon-green);
   margin:0;
 }
-header span {
-  font-size:0.9rem;
-  color: var(--hot-pink);
-}
 marquee {
   color: var(--hot-pink);
   font-weight:bold;
@@ -73,7 +69,6 @@ footer {
 <div class="frame">
 <header>
   <h1>Welcome to the Jungl3</h1>
-  <span id="visits"></span>
 </header>
 <marquee>Welcome Neo...</marquee>
 <section id="intro">
@@ -88,20 +83,10 @@ footer {
 </section>
 <footer>
   <p>&copy; <span id="year"></span> Jungl3master</p>
-  <p>You are visitor #<span id="counter"></span></p>
 </footer>
 </div>
 <script>
-// Fake hit counter using localStorage (period-correct vibes, modern trick)
-(function() {
-  const key = 'y2k_hits';
-  let n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
-  localStorage.setItem(key, String(n));
-  const padded = String(n).padStart(5, '0');
-  document.getElementById('counter').textContent = padded;
-  document.getElementById('visits').textContent = padded;
-})();
-// Year
+// Set current year
 document.getElementById('year').textContent = new Date().getFullYear();
 // Tiny cursor sparkles
 const sparks = [];
