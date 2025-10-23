@@ -8,90 +8,93 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
 :root {
---neon-green:#39ff14;
---hot-pink:#ff2bd6;
---deep-black:#050505;
---grid-color: rgba(255,255,255,0.05);
+  --neon-green:#39ff14;
+  --hot-pink:#ff2bd6;
+  --deep-black:#050505;
+  --grid-color: rgba(255,255,255,0.05);
 }
 * { box-sizing:border-box; }
-body { margin:0; font-family: 'Courier New', monospace; background: radial-gradient(circle at center, #050505 0, #0a0a0a 100%); color: var(--neon-green); overflow-x:hidden; }
-
-.frame {
- max-width:900px;
- margin:0 auto;
- padding:20px;
- border: 2px solid var(--hot-pink);
- background: linear-gradient(45deg, rgba(57,255,20,0.1) 0%, rgba(255,43,214,0.1) 100%);
- box-shadow: 0 0 15px var(--hot-pink);
+body {
+  margin:0;
+  font-family:'Courier New', monospace;
+  background: radial-gradient(circle at center, #050505 0%, #0a0a0a 100%);
+  color: var(--neon-green);
 }
-
-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
-header h1 { font-size:2rem; color: var(--neon-green); margin:0; }
-header span { font-size:0.9rem; color: var(--hot-pink); }
-
-nav ul { list-style:none; display:flex; gap:10px; padding:0; margin:0; }
-nav a { color: var(--hot-pink); text-decoration:none; }
-nav a:hover { text-decoration:underline; }
-
-marquee { background: var(--deep-black); color: var(--neon-green); padding:4px; font-size:0.8rem; }
-section { margin:2rem 0; }
-#intro h2 { font-size:2rem; margin:0 0 0.5rem; color: var(--hot-pink); }
-#intro p { margin:0 0 1rem; }
-
-.now-playing { border-top:1px dashed var(--hot-pink); padding-top:1rem; }
-.now-playing h3 { margin:0 0 0.5rem; color: var(--hot-pink); }
-.now-playing audio { width:100%; margin-top:0.5rem; }
-.tag { display:inline-block; margin-right:5px; background: var(--deep-black); padding:2px 4px; color: var(--neon-green); font-size:0.75rem; border:1px solid var(--hot-pink); border-radius:3px; }
-
-#playlist h3 { margin:0 0 0.5rem; color: var(--hot-pink); }
-
-footer { margin-top:3rem; text-align:center; font-size:0.8rem; color: var(--hot-pink); border-top:1px dashed var(--hot-pink); padding-top:1rem; }
+.frame {
+  max-width:900px;
+  margin:0 auto;
+  padding:20px;
+  border: 2px solid var(--hot-pink);
+  background: linear-gradient(45deg, rgba(57,255,20,0.1) 0%, rgba(255,43,214,0.1) 100%);
+  box-shadow: 0 0 15px var(--hot-pink);
+}
+header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  margin-bottom:1rem;
+}
+header h1 {
+  font-size:2rem;
+  color: var(--neon-green);
+  margin:0;
+}
+header span {
+  font-size:0.9rem;
+  color: var(--hot-pink);
+}
+marquee {
+  color: var(--hot-pink);
+  font-weight:bold;
+  margin-bottom:1rem;
+}
+section {
+  margin-bottom:2rem;
+}
+h2 {
+  color: var(--hot-pink);
+}
+footer {
+  text-align:center;
+  margin-top:2rem;
+  font-size:0.8rem;
+  color: var(--hot-pink);
+}
+.spark {
+  position: fixed;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background: var(--hot-pink);
+}
 </style>
 </head>
 <body>
 <div class="frame">
 <header>
-<h1>Welcome to the Jungl3</h1>
-<span>h4x0r.90s</span>
+  <h1>Welcome to the Jungl3</h1>
+  <span id="visits"></span>
 </header>
-
-<marquee behavior="scroll" direction="left">Welcome Neo... You are visitor #<span id="counter"></span></marquee>
-
+<marquee>Welcome Neo...</marquee>
 <section id="intro">
-<h2>&lt;Hello, Hacker /&gt;</h2>
-<p>Welcome to my little corner of the internet. Here you'll find code experiments, art projects, chiptune mixes and retro blog posts. Grab your neon shades & start exploring!</p>
+  <p>Hello script kiddies... my name is Jungl3master... Welcome to my lair</p>
 </section>
-
-<section class="now-playing">
-<h3>Now Playing</h3>
-<p>Hacking vibes curated for your ears. Mood: hacking the planet.</p>
-<audio controls autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2022/08/19/audio_f8d1921097.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<div id="now-playing-tags"></div>
-</section>
-
 <section id="playlist">
-<h3>My Spotify Playlist</h3>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6PDSZrSxBZEa2jawt86kHj?utm_source=generator" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  <h2>My Spotify Playlist</h2>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6PDSZrSxBZEa2jawt86kHj?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </section>
-
 <section id="blog">
-<h3>Changelog / Blog</h3>
-<!-- Blog content will go here -->
+  <!-- Blog posts will go here -->
 </section>
-
 <footer>
-<p>© <span id="year"></span> Y2K Hackzone — All rights reserved.</p>
-<p>You are visitor #<span id="visits"></span></p>
+  <p>&copy; <span id="year"></span> Jungl3master</p>
+  <p>You are visitor #<span id="counter"></span></p>
 </footer>
 </div>
-
 <script>
 // Fake hit counter using localStorage (period-correct vibes, modern trick)
 (function() {
-  const key='y2k_hits';
+  const key = 'y2k_hits';
   let n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
   localStorage.setItem(key, String(n));
   const padded = String(n).padStart(5, '0');
@@ -105,13 +108,8 @@ const sparks = [];
 window.addEventListener('mousemove', e => {
   const s = document.createElement('div');
   s.className = 'spark';
-  s.style.position = 'fixed';
-  s.style.width = '4px';
-  s.style.height = '4px';
-  s.style.borderRadius = '50%';
-  s.style.background = 'var(--hot-pink)';
-  s.style.left = (e.clientX + (Math.random()*6-3)) + 'px';
-  s.style.top  = (e.clientY + (Math.random()*6-3)) + 'px';
+  s.style.left = (e.clientX + (Math.random() * 6 - 3)) + 'px';
+  s.style.top = (e.clientY + (Math.random() * 6 - 3)) + 'px';
   document.body.appendChild(s);
   sparks.push(s);
   setTimeout(() => {
@@ -121,15 +119,6 @@ window.addEventListener('mousemove', e => {
       s.remove();
     }, 650);
   });
-});
-// Now Playing tags
-const tags = ['#jungle','#shoegaze','#y2k','#bitcrush','#pink-noise','#green-grid','#dialup','#h4x0r','#retro-synth'];
-const bucket = document.getElementById('now-playing-tags');
-tags.sort(() => Math.random() - 0.5).slice(0,5).forEach(t => {
-  const el = document.createElement('span');
-  el.className = 'tag';
-  el.textContent = t;
-  bucket.appendChild(el);
 });
 </script>
 </body>
