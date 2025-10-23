@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog - Jungl3master</title>
+<style>
+body {
+  background-color: #000;
+  color: #39ff14;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 20px;
+}
+a { color: #ff2bd6; text-decoration: none; }
+h1 { text-align: center; color: #ff2bd6; }
+.post { border: 1px solid #ff2bd6; padding: 10px; margin: 10px 0; }
+.post-title { font-weight: bold; color: #ff2bd6; }
+.post-content { margin-top: 5px; }
+.add-post-btn { display: inline-block; padding: 5px 10px; background-color: #ff2bd6; color: #050505; margin-bottom: 10px; cursor: pointer; border-radius: 3px; }
+.hidden { display: none; }
+input, textarea { width: 100%; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<a href="index.html">&larr; Back to Home</a>
+<h1>Blog</h1>
+<div id="posts"></div>
+<button id="addPostBtn" class="add-post-btn">Add Post</button>
+<div id="postForm" class="hidden">
+  <input type="text" id="postTitle" placeholder="Title" />
+  <textarea id="postContent" placeholder="Your post here..." rows="5"></textarea>
+  <button id="submitPost">Submit</button>
+</div>
+<script>
+// Load posts from localStorage
+function loadPosts() {
+  const postsContainer = document.getElementById('posts');
+  const posts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
+  postsContainer.innerHTML = '';
+  posts.forEach(post => {
+    const div = document.createElement('div');
+    div.className = 'post';
+    const title = document.createElement('div');
+    title.className = 'post-title';
+    title.textContent = post.title;
+    const content = document.createElement('div');
+    content.className = 'post-content';
+    content.textContent = post.content;
+    div.appendChild(title);
+    div.appendChild(content);
+    postsContainer.appendChild(div);
+  });
+}
+function savePosts(posts) {
+  localStorage.setItem('blogPosts', JSON.stringify(posts));
+}
+document.getElementById('addPostBtn').addEventListener('click', () => {
+  let storedPassword = localStorage.getItem('blogPassword');
+  const inputPassword = prompt(storedPassword ? 'Enter blog password:' : 'Set blog password:');
+  if (storedPassword) {
+    if (inputPassword !== storedPassword) {
+      alert('Incorrect password.');
+      return;
+    }
+  } else {
+    localStorage.setItem('blogPassword', inputPassword);
+  }
+  document.getElementById('postForm').classList.remove('hidden');
+});
+document.getElementById('submitPost').addEventListener('click', () => {
+  const title = document.getElementById('postTitle').value.trim();
+  const content = document.getElementById('postContent').value.trim();
+  if (!title || !content) {
+    alert('Please fill out both fields.');
+    return;
+  }
+  const posts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
+  posts.unshift({ title, content });
+  savePosts(posts);
+  loadPosts();
+  document.getElementById('postForm').classList.add('hidden');
+  document.getElementById('postTitle').value = '';
+  document.getElementById('postContent').value = '';
+});
+// Initially load posts
+loadPosts();
+</script>
+</body>
+</html>
