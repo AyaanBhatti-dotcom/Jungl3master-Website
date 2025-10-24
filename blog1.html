@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Entry #1 - Jungl3master</title>
+<meta name="description" content="Blog entry 1 - Jungl3master">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+:root {
+  --bg: #1a1a1a;
+  --container-bg: #2c2c2c;
+  --accent: #00a0ff;
+  --text: #e0e0e0;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:'Courier New', monospace;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+}
+article {
+  background: var(--container-bg);
+  border: 2px solid var(--accent);
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px var(--accent);
+}
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+nav a:hover { text-decoration: underline; }
+footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--text);
+}
+</style>
+</head>
+<body>
+<nav><a href="blog.html">← Back to Blog</a> | <a href="index.html">Home</a></nav>
+<h1>Blog Entry #1</h1>
+<article>
+<p>Hello users. I started this as a fun project back in August. I was camping with my family and was bored out of my mind. Thanks to my 2 bars of data and bad service, I was able to come up with this website! I’ll be posting a lot more cyber content on here so be sure to stay tuned. Until next time…</p>
+</article>
+<footer>&copy; <span id="year"></span> Jungl3master</footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
