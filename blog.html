@@ -1,82 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Blog - Jungl3master</title>
-<meta name="description" content="Jungl3master's blog posts">
-<link rel="icon" type="image/png" href="favicon.png">
 <style>
 :root {
-  --neon-green: #39ff14;
-  --hot-pink: #ff2bd6;
-  --deep-black: #050505;
+    --neon-green: #39ff14;
+    --hot-pink: #ff2bd6;
+    --deep-black: #050505;
+    --bg-gradient: radial-gradient(circle at center, #0a0a0a, #000000);
 }
 body {
-  margin: 0;
-  font-family: 'Courier New', monospace;
-  background: radial-gradient(circle at center, var(--deep-black) 0%, #0a0a0a 100%);
-  color: var(--neon-green);
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: var(--bg-gradient);
+    color: var(--neon-green);
 }
 .frame {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 2px solid var(--hot-pink);
-  background: linear-gradient(45deg, rgba(57,255,20,0.1) 0%, rgba(255,43,214,0.1) 100%);
-  box-shadow: 0 0 15px var(--hot-pink);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 nav a {
-  color: var(--hot-pink);
-  margin-right: 1rem;
-  text-decoration: none;
-}
-nav a:hover {
-  text-decoration: underline;
+    color: var(--hot-pink);
+    text-decoration: none;
+    margin-right: 1rem;
 }
 h1 {
-  color: var(--hot-pink);
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 .blog-cards {
-  margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 .blog-card {
-  margin-bottom: 1.5rem;
-  padding: 15px;
-  border: 2px solid var(--hot-pink);
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.4);
+    background: transparent;
+    border: 2px solid var(--hot-pink);
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 .blog-card a {
-  color: var(--hot-pink);
-  font-size: 1.2rem;
-  text-decoration: none;
+    color: var(--hot-pink);
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
 }
-.blog-card a:hover {
-  color: var(--neon-green);
+.blog-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--hot-pink);
 }
 footer {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 0.8rem;
-  color: var(--hot-pink);
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--hot-pink);
 }
 </style>
 </head>
 <body>
 <div class="frame">
-  <nav>
-    <a href="index.html">Home</a>
-  </nav>
-  <h1>Blog</h1>
-  <div class="blog-cards">
-    <div class="blog-card">
-      <a href="blog1.html">Blog Entry #1</a>
-      <p>Hello users. I started this as a fun project back in August. I was camping with my family and was bored out of my mind. Thanks to my 2 bars of data and bad service, I was able to come up with this website! I’ll be posting a lot more cyber content on here so be sure to stay tuned. Until next time…</p>
-    </div>
-  </div>
-  <footer>
-    &copy; <span id="year"></span> Jungl3master
-  </footer>
+<nav>
+<a href="index.html">Home</a>
+</nav>
+<h1>Blog</h1>
+<div class="blog-cards">
+<div class="blog-card"><a href="blog1.html">Blog Entry #1</a></div>
+</div>
+<footer>&copy; <span id="year"></span> Jungl3master</footer>
 </div>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
