@@ -8,85 +8,79 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
 :root {
-    --neon-green:#39ff14;
-    --hot-pink:#ff2bd6;
-    --deep-black:#050505;
+  --fog: #7e807f;
+  --rust: #a67c52;
+  --dark: #1c1c1c;
 }
 * { box-sizing: border-box; }
 body {
-    margin: 0;
-    font-family: 'Courier New', monospace;
-    background: radial-gradient(circle at center, #050505 0%, #0a0a0a 100%);
-    color: var(--neon-green);
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(#1c1c1c 0%, #2b2b2b 100%);
+  color: var(--fog);
 }
 .frame {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid var(--hot-pink);
-    background: linear-gradient(45deg, rgba(57,255,20,0.1) 0%, rgba(255,43,214,0.1) 100%);
-    box-shadow: 0 0 15px var(--hot-pink);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid var(--rust);
+  background: rgba(28,28,28,0.85);
+  box-shadow: 0 0 15px var(--rust);
 }
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
-header h1 {
-    font-size: 2rem;
-    color: var(--neon-green);
-    margin: 0;
+header a {
+  color: var(--rust);
+  text-decoration: none;
+  font-size: 0.9rem;
 }
-.back-link {
-    display: inline-block;
-    padding: 8px 16px;
-    background: var(--hot-pink);
-    color: var(--deep-black);
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
+header a:hover {
+  text-decoration: underline;
 }
-.back-link:hover {
-    opacity: 0.8;
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--rust);
 }
-article {
-    border: 1px solid var(--hot-pink);
-    padding: 10px;
-    margin-bottom: 20px;
+#posts article {
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--rust);
+  padding-left: 1rem;
 }
-article h2 {
-    color: var(--hot-pink);
-    margin-top: 0;
+#posts h2 {
+  margin-top: 0;
+  color: var(--rust);
 }
 footer {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.8rem;
-    color: var(--hot-pink);
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--fog);
 }
 </style>
 </head>
 <body>
 <div class="frame">
 <header>
-    <h1>Blog</h1>
-    <a href="index.html" class="back-link">&larr; Back to Home</a>
+  <h1>Blog</h1>
+  <a href="index.html">Back to Home</a>
 </header>
 <section id="posts">
-    <!-- Example Blog Post -->
-    <article>
-        <h2>Welcome to my Blog</h2>
-        <p>Coming soon... stay tuned for updates.</p>
-    </article>
+  <article>
+    <h2>Blog Entry #1</h2>
+    <p>Hello users. I started this as a fun project back in August. I was camping with my family and was bored out of my mind. Thanks to my 2 bars of data and bad service, I was able to come up with this website! I’ll be posting a lot more cyber content on here so be sure to stay tuned. Until next time…</p>
+  </article>
 </section>
 <footer>
-    <p>&copy; <span id="year"></span> Jungl3master</p>
+  &copy; <span id="year"></span> Jungl3master
 </footer>
 </div>
 <script>
-// Set current year
-document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
