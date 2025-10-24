@@ -7,95 +7,77 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
 :root {
-  --bg: #f0f0f0;
-  --tile-bg: #ffffff;
-  --tile-border: #cccccc;
-  --tile-shadow: rgba(0,0,0,0.1);
-  --accent: #00a1e9;
-  --text: #333333;
+  --neon-green: #39ff14;
+  --hot-pink: #ff2bd6;
+  --deep-black: #050505;
 }
-
 body {
-  background: var(--bg);
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--text);
+  font-family: 'Courier New', monospace;
+  background: radial-gradient(circle at center, var(--deep-black) 0%, #0a0a0a 100%);
+  color: var(--neon-green);
 }
-
-header {
+.frame {
+  max-width: 900px;
+  margin: 0 auto;
   padding: 20px;
-  text-align: center;
+  border: 2px solid var(--hot-pink);
+  background: linear-gradient(45deg, rgba(57,255,20,0.1) 0%, rgba(255,43,214,0.1) 100%);
+  box-shadow: 0 0 15px var(--hot-pink);
 }
-
-h1 {
-  margin: 0;
-  font-size: 2rem;
-}
-
-nav {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 nav a {
-  color: var(--accent);
+  color: var(--hot-pink);
+  margin-right: 1rem;
   text-decoration: none;
-  margin: 0 10px;
 }
-
-#tiles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+nav a:hover {
+  text-decoration: underline;
 }
-
-.tile {
-  background: var(--tile-bg);
-  border: 2px solid var(--tile-border);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px var(--tile-shadow);
-  text-align: center;
-  padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+h1 {
+  color: var(--hot-pink);
 }
-
-.tile:hover {
-  transform: scale(1.05);
-  border-color: var(--accent);
-  box-shadow: 0 6px 12px var(--tile-shadow);
+.blog-cards {
+  margin-top: 1.5rem;
 }
-
-.tile a {
-  display: block;
-  color: var(--text);
+.blog-card {
+  margin-bottom: 1.5rem;
+  padding: 15px;
+  border: 2px solid var(--hot-pink);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.4);
+}
+.blog-card a {
+  color: var(--hot-pink);
+  font-size: 1.2rem;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
 }
-
+.blog-card a:hover {
+  color: var(--neon-green);
+}
 footer {
   text-align: center;
-  padding: 10px 0;
+  margin-top: 2rem;
   font-size: 0.8rem;
+  color: var(--hot-pink);
 }
 </style>
 </head>
 <body>
-<nav>
-  <a href="index.html">Home</a>
-</nav>
-<header>
+<div class="frame">
+  <nav>
+    <a href="index.html">Home</a>
+  </nav>
   <h1>Blog</h1>
-</header>
-<main id="tiles">
-  <div class="tile">
-    <a href="blog1.html">Blog Entry #1</a>
+  <div class="blog-cards">
+    <div class="blog-card">
+      <a href="blog1.html">Blog Entry #1</a>
+      <p>Hello users. I started this as a fun project back in August. I was camping with my family and was bored out of my mind. Thanks to my 2 bars of data and bad service, I was able to come up with this website! I’ll be posting a lot more cyber content on here so be sure to stay tuned. Until next time…</p>
+    </div>
   </div>
-</main>
-<footer>
-  &copy; <span id="year"></span> Jungl3master
-</footer>
+  <footer>
+    &copy; <span id="year"></span> Jungl3master
+  </footer>
+</div>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
