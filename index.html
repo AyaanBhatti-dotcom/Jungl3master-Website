@@ -106,7 +106,7 @@
             <TABLE BORDER="3" CELLPADDING="8" CELLSPACING="0" BGCOLOR="#001100" BORDERCOLOR="#00FF00" WIDTH="500" ALIGN="CENTER">
             <TR>
             <TD ALIGN="CENTER" BGCOLOR="#000000">
-            <IFRAME SRC="https://myradiostream.com/jungl3master" WIDTH="100%" HEIGHT="150" FRAMEBORDER="0" SCROLLING="no" STYLE="background-color: #000000;"></IFRAME>
+            <IFRAME SRC="http://jungl3master.on-air.fm/free/" WIDTH="100%" HEIGHT="200" FRAMEBORDER="0" SCROLLING="no" STYLE="background-color: #000000;"></IFRAME>
             </TD>
             </TR>
             </TABLE>
@@ -171,18 +171,11 @@
 <!--
 function playLiveStream() {
     var audioPlayer = document.getElementById('audioPlayer');
-    var audio = document.getElementById('audioElement');
     
     if (audioPlayer.style.display === 'none' || audioPlayer.style.display === '') {
         audioPlayer.style.display = 'block';
         document.getElementById('playButton').value = '<< HIDE PLAYER >>';
-        // Set your stream URL here when you have it
-        // audio.src = 'YOUR_STREAM_URL_HERE';
-        // audio.play();
     } else {
-        if (audio) {
-            audio.pause();
-        }
         audioPlayer.style.display = 'none';
         document.getElementById('playButton').value = '>> CLICK HERE TO PLAY <<';
     }
