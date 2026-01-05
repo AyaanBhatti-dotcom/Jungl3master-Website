@@ -42,8 +42,29 @@
 
 <TABLE BORDER="12" CELLPADDING="3" CELLSPACING="0" WIDTH="660" BGCOLOR="#003300" BORDERCOLOR="#00FF00">
   <TR>
-    <TD>
-
+    <TD VALIGN="TOP" WIDTH="150">
+      <TABLE BORDER="3" CELLPADDING="8" CELLSPACING="0" WIDTH="100%" BGCOLOR="#001100" BORDERCOLOR="#00FF00">
+        <TR>
+          <TD ALIGN="CENTER" BGCOLOR="#000000">
+            <FONT SIZE="4" FACE="Courier New, Courier, monospace" COLOR="#00FF00">
+            <B>Next Episode:</B>
+            </FONT>
+            <BR><BR>
+            <TABLE BORDER="2" CELLPADDING="6" CELLSPACING="0" WIDTH="100%" BGCOLOR="#000000" BORDERCOLOR="#008000">
+              <TR>
+                <TD ALIGN="CENTER">
+                  <FONT SIZE="2" FACE="Courier New, Courier, monospace" COLOR="#00FF00">
+                  Episode 1: Shoegaze<BR>
+                  1/6/26 6:00 P.M. EST
+                  </FONT>
+                </TD>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+      </TABLE>
+    </TD>
+    <TD VALIGN="TOP">
       <TABLE BORDER="3" CELLPADDING="8" CELLSPACING="0" WIDTH="100%" BGCOLOR="#000000" BORDERCOLOR="#008000">
         <TR>
           <TD ALIGN="CENTER" VALIGN="TOP">
@@ -82,9 +103,7 @@
                      <TR>
                        <TD ALIGN="LEFT">
                          <FONT SIZE="3" FACE="Courier New, Courier, monospace" COLOR="#00FF00">
-                         <B>Status:</B> <I ID="statusText">Ready to play</I><BR>
-                         <B>Buffer:</B> <SPAN ID="bufferText">0%</SPAN><BR>
-                         <B>Encryption:</B> NONE<BR>
+                         <B>Status:</B> <I ID="statusText">Ready to play</I>
                          </FONT>
                        </TD>
                      </TR>
@@ -181,22 +200,18 @@ function playLiveStream() {
     var audio = document.getElementById('audioElement');
     var button = document.getElementById('playButton');
     var statusText = document.getElementById('statusText');
-    var bufferText = document.getElementById('bufferText');
     var streamUrl = 'http://s33.myradiostream.com:18744/listen.mp3';
     
     if (!isPlaying) {
         audioPlayer.style.display = 'block';
         statusText.innerHTML = 'Connecting...';
-        bufferText.innerHTML = '0%';
         audio.src = streamUrl;
         audio.play().then(function() {
             isPlaying = true;
             button.value = '<< PAUSE >>';
             statusText.innerHTML = '<BLINK>NOW PLAYING</BLINK>';
-            bufferText.innerHTML = '100%';
         }).catch(function(error) {
             statusText.innerHTML = 'Error: ' + error.message;
-            bufferText.innerHTML = '0%';
             alert('Error playing stream: ' + error.message);
         });
     } else {
@@ -204,7 +219,6 @@ function playLiveStream() {
         isPlaying = false;
         button.value = '>> PLAY STREAM <<';
         statusText.innerHTML = 'Paused';
-        bufferText.innerHTML = '0%';
     }
 }
 
@@ -215,22 +229,18 @@ if (audio) {
             isPlaying = false;
             document.getElementById('playButton').value = '>> PLAY STREAM <<';
             document.getElementById('statusText').innerHTML = 'Paused';
-            document.getElementById('bufferText').innerHTML = '0%';
         }
     });
     audio.addEventListener('play', function() {
         isPlaying = true;
         document.getElementById('playButton').value = '<< PAUSE >>';
         document.getElementById('statusText').innerHTML = '<BLINK>NOW PLAYING</BLINK>';
-        document.getElementById('bufferText').innerHTML = '100%';
     });
     audio.addEventListener('waiting', function() {
         document.getElementById('statusText').innerHTML = 'Buffering...';
-        document.getElementById('bufferText').innerHTML = 'Loading...';
     });
     audio.addEventListener('playing', function() {
         document.getElementById('statusText').innerHTML = '<BLINK>NOW PLAYING</BLINK>';
-        document.getElementById('bufferText').innerHTML = '100%';
     });
 }
 //-->
