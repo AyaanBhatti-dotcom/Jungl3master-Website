@@ -78,17 +78,17 @@
 
                   <BR><BR>
 
-                  <TABLE BORDER="2" CELLPADDING="6" CELLSPACING="0" WIDTH="90%" BGCOLOR="#000000" BORDERCOLOR="#008000">
-                    <TR>
-                      <TD ALIGN="LEFT">
-                        <FONT SIZE="3" FACE="Courier New, Courier, monospace" COLOR="#00FF00">
-                        <B>Status:</B> <I>Broadcasting...</I><BR>
-                        <B>Buffer:</B> 100%<BR>
-                        <B>Encryption:</B> NONE<BR>
-                        </FONT>
-                      </TD>
-                    </TR>
-                  </TABLE>
+                   <TABLE BORDER="2" CELLPADDING="6" CELLSPACING="0" WIDTH="90%" BGCOLOR="#000000" BORDERCOLOR="#008000">
+                     <TR>
+                       <TD ALIGN="LEFT">
+                         <FONT SIZE="3" FACE="Courier New, Courier, monospace" COLOR="#00FF00">
+                         <B>Status:</B> <I ID="statusText">Ready to play</I><BR>
+                         <B>Buffer:</B> <SPAN ID="bufferText">0%</SPAN><BR>
+                         <B>Encryption:</B> NONE<BR>
+                         </FONT>
+                       </TD>
+                     </TR>
+                   </TABLE>
 
                   <BR>
 
@@ -178,21 +178,31 @@ function playLiveStream() {
     var audioPlayer = document.getElementById('audioPlayer');
     var audio = document.getElementById('audioElement');
     var button = document.getElementById('playButton');
+    var statusText = document.getElementById('statusText');
+    var bufferText = document.getElementById('bufferText');
     var streamUrl = 'http://s33.myradiostream.com:18744/listen.mp3';
     
     if (!isPlaying) {
         audioPlayer.style.display = 'block';
+        statusText.innerHTML = 'Connecting...';
+        bufferText.innerHTML = '0%';
         audio.src = streamUrl;
         audio.play().then(function() {
             isPlaying = true;
             button.value = '<< PAUSE >>';
+            statusText.innerHTML = '<BLINK>NOW PLAYING</BLINK>';
+            bufferText.innerHTML = '100%';
         }).catch(function(error) {
+            statusText.innerHTML = 'Error: ' + error.message;
+            bufferText.innerHTML = '0%';
             alert('Error playing stream: ' + error.message);
         });
     } else {
         audio.pause();
         isPlaying = false;
         button.value = '>> PLAY STREAM <<';
+        statusText.innerHTML = 'Paused';
+        bufferText.innerHTML = '0%';
     }
 }
 
@@ -202,11 +212,23 @@ if (audio) {
         if (audio.paused && isPlaying) {
             isPlaying = false;
             document.getElementById('playButton').value = '>> PLAY STREAM <<';
+            document.getElementById('statusText').innerHTML = 'Paused';
+            document.getElementById('bufferText').innerHTML = '0%';
         }
     });
     audio.addEventListener('play', function() {
         isPlaying = true;
         document.getElementById('playButton').value = '<< PAUSE >>';
+        document.getElementById('statusText').innerHTML = '<BLINK>NOW PLAYING</BLINK>';
+        document.getElementById('bufferText').innerHTML = '100%';
+    });
+    audio.addEventListener('waiting', function() {
+        document.getElementById('statusText').innerHTML = 'Buffering...';
+        document.getElementById('bufferText').innerHTML = 'Loading...';
+    });
+    audio.addEventListener('playing', function() {
+        document.getElementById('statusText').innerHTML = '<BLINK>NOW PLAYING</BLINK>';
+        document.getElementById('bufferText').innerHTML = '100%';
     });
 }
 //-->
