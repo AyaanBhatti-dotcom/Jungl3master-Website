@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 <HTML>
 <HEAD>
-<TITLE>*** RADIO STREAM ***</TITLE>
+<TITLE>*** Jungl3 Radio ***</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
 <META NAME="GENERATOR" CONTENT="Notepad">
 <SCRIPT SRC="//myradiostream.com/embed/jungl3master"></SCRIPT>
@@ -55,7 +55,7 @@
         <TR>
         <TD ALIGN="CENTER" BGCOLOR="#000000">
             <FONT SIZE="6" COLOR="#00FF00" FACE="Courier New, Courier, monospace">
-            <B>*** RADIO STREAM ***</B>
+            <B>*** Jungl3 Radio ***</B>
             </FONT>
             <BR>
             <FONT SIZE="2" COLOR="#00FF00" FACE="Courier New, Courier, monospace">
@@ -99,13 +99,19 @@
 
             <BR><BR>
 
+            <INPUT TYPE="BUTTON" VALUE=">> PLAY STREAM <<" ID="playButton" ONCLICK="playLiveStream()" STYLE="font-family: Courier New, Courier, monospace; font-size: 16px; font-weight: bold; background-color: #00FF00; color: #000000; border: 4px outset #00FF00; padding: 12px 24px; cursor: pointer;">
+
+            <BR><BR>
+
+            <DIV ID="audioPlayer" STYLE="display: none;">
             <TABLE BORDER="3" CELLPADDING="8" CELLSPACING="0" BGCOLOR="#001100" BORDERCOLOR="#00FF00" WIDTH="500" ALIGN="CENTER">
             <TR>
             <TD ALIGN="CENTER" BGCOLOR="#000000">
-            <!-- Player widget created by embed script -->
+            <AUDIO ID="audioElement" CONTROLS PRELOAD="none" STYLE="width: 100%;"></AUDIO>
             </TD>
             </TR>
             </TABLE>
+            </DIV>
 
             <BR>
 
@@ -162,6 +168,47 @@
 
 </CENTER>
 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isPlaying = false;
+
+function playLiveStream() {
+    var audioPlayer = document.getElementById('audioPlayer');
+    var audio = document.getElementById('audioElement');
+    var button = document.getElementById('playButton');
+    var streamUrl = 'http://s33.myradiostream.com:18744/listen.mp3';
+    
+    if (!isPlaying) {
+        audioPlayer.style.display = 'block';
+        audio.src = streamUrl;
+        audio.play().then(function() {
+            isPlaying = true;
+            button.value = '<< PAUSE >>';
+        }).catch(function(error) {
+            alert('Error playing stream: ' + error.message);
+        });
+    } else {
+        audio.pause();
+        isPlaying = false;
+        button.value = '>> PLAY STREAM <<';
+    }
+}
+
+var audio = document.getElementById('audioElement');
+if (audio) {
+    audio.addEventListener('pause', function() {
+        if (audio.paused && isPlaying) {
+            isPlaying = false;
+            document.getElementById('playButton').value = '>> PLAY STREAM <<';
+        }
+    });
+    audio.addEventListener('play', function() {
+        isPlaying = true;
+        document.getElementById('playButton').value = '<< PAUSE >>';
+    });
+}
+//-->
+</SCRIPT>
 
 </BODY>
 </HTML>
