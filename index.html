@@ -103,11 +103,11 @@
 
             <BR><BR>
 
-            <DIV ID="audioPlayer">
+            <DIV ID="audioPlayer" STYLE="display: none;">
             <TABLE BORDER="3" CELLPADDING="8" CELLSPACING="0" BGCOLOR="#001100" BORDERCOLOR="#00FF00" WIDTH="500" ALIGN="CENTER">
             <TR>
             <TD ALIGN="CENTER" BGCOLOR="#000000">
-            <AUDIO ID="audioElement" CONTROLS PRELOAD="none" STYLE="width: 100%;"></AUDIO>
+            <DIV ID="myradiostream-jungl3master"></DIV>
             </TD>
             </TR>
             </TABLE>
@@ -170,43 +170,16 @@
 
 <SCRIPT LANGUAGE="JavaScript">
 <!--
-var isPlaying = false;
-var audio = null;
-
 function playLiveStream() {
-    var streamUrl = 'https://myradiostream.com/jungl3master/stream';
-    
-    if (!audio) {
-        audio = document.getElementById('audioElement');
-    }
-    
-    if (!isPlaying) {
-        audio.src = streamUrl;
-        audio.play().then(function() {
-            isPlaying = true;
-            document.getElementById('playButton').value = '<< PAUSE >>';
-        }).catch(function(error) {
-            alert('Error playing stream: ' + error.message);
-        });
+    var audioPlayer = document.getElementById('audioPlayer');
+    if (audioPlayer.style.display === 'none' || audioPlayer.style.display === '') {
+        audioPlayer.style.display = 'block';
+        document.getElementById('playButton').value = '<< HIDE PLAYER >>';
+        // The embed script should create the player widget automatically in the div
     } else {
-        audio.pause();
-        isPlaying = false;
+        audioPlayer.style.display = 'none';
         document.getElementById('playButton').value = '>> CLICK HERE TO PLAY <<';
     }
-}
-
-audio = document.getElementById('audioElement');
-if (audio) {
-    audio.addEventListener('pause', function() {
-        if (audio.paused && isPlaying) {
-            isPlaying = false;
-            document.getElementById('playButton').value = '>> CLICK HERE TO PLAY <<';
-        }
-    });
-    audio.addEventListener('play', function() {
-        isPlaying = true;
-        document.getElementById('playButton').value = '<< PAUSE >>';
-    });
 }
 //-->
 </SCRIPT>
