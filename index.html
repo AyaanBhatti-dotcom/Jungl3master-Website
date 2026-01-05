@@ -99,19 +99,13 @@
 
             <BR><BR>
 
-            <INPUT TYPE="BUTTON" VALUE="&gt;&gt; CLICK HERE TO PLAY &lt;&lt;" ID="playButton" ONCLICK="playLiveStream()" STYLE="font-family: Courier New, Courier, monospace; font-size: 16px; font-weight: bold; background-color: #00FF00; color: #000000; border: 4px outset #00FF00; padding: 12px 24px; cursor: pointer;">
-
-            <BR><BR>
-
-            <DIV ID="audioPlayer">
             <TABLE BORDER="3" CELLPADDING="8" CELLSPACING="0" BGCOLOR="#001100" BORDERCOLOR="#00FF00" WIDTH="500" ALIGN="CENTER">
             <TR>
             <TD ALIGN="CENTER" BGCOLOR="#000000">
-            <!-- Embed script creates player widget here automatically -->
+            <!-- Player widget created by embed script -->
             </TD>
             </TR>
             </TABLE>
-            </DIV>
 
             <BR>
 
@@ -168,21 +162,6 @@
 
 </CENTER>
 
-<SCRIPT LANGUAGE="JavaScript">
-<!--
-function playLiveStream() {
-    var audioPlayer = document.getElementById('audioPlayer');
-    
-    if (audioPlayer.style.display === 'none' || audioPlayer.style.display === '') {
-        audioPlayer.style.display = 'block';
-        document.getElementById('playButton').value = '<< HIDE PLAYER >>';
-    } else {
-        audioPlayer.style.display = 'none';
-        document.getElementById('playButton').value = '>> CLICK HERE TO PLAY <<';
-    }
-}
-//-->
-</SCRIPT>
 
 </BODY>
 </HTML>
