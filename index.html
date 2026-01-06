@@ -211,8 +211,8 @@ function playLiveStream() {
             button.value = '<< PAUSE >>';
             statusText.innerHTML = '<BLINK>NOW PLAYING</BLINK>';
         }).catch(function(error) {
-            statusText.innerHTML = 'Error: ' + error.message;
-            alert('Error playing stream: ' + error.message);
+            statusText.innerHTML = 'Stream is inactive. Please check the dates.';
+            audioPlayer.style.display = 'none';
         });
     } else {
         audio.pause();
